@@ -11,14 +11,14 @@ sensor = Pin(5, Pin.IN, Pin.PULL_DOWN)                   # polaroid sensor
 
 # Interrupts
 
-def bonk(pin):
+def bonk():
     
-    if (sensor.value() == 0):
-        return
+    #if (sensor.value() == 0):
+    #    return
     
-    if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
-        print("person 0 played")
-    elif (s0.value() == 0 and s1.value() == 0 and s2.value() == 1):
+    
+    
+    if (s0.value() == 0 and s1.value() == 0 and s2.value() == 1):
         print("person 1 played")
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 0):
         print("person 2 played")
@@ -32,6 +32,8 @@ def bonk(pin):
         print("person 6 played")
     elif (s0.value() == 1 and s1.value() == 1 and s2.value() == 1):
         print("person 7 played")
+    else:
+        print("no one!")
     
     
 
@@ -44,6 +46,8 @@ print("Begin!")
 # main
 while True:
     # Do idle animation
+    sleep(0.5)
+    bonk()
     led.value(0)
     if sensor.value() == 1:
         led.value(1)

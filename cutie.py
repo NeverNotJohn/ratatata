@@ -16,9 +16,9 @@ Pinout TFT Display:
 LED   -> 3v3
 SCK   -> 10
 SDA   -> 11
-A0    -> 9
-RESET -> 12
-CS    -> 13
+A0    -> 12
+RESET -> 13
+CS    -> 14
 GND   -> gee I wonder
 VCC   -> 3v3
 
@@ -27,12 +27,12 @@ speaker -> 3
 
 """
 
-spi = SPI(1, baudrate=20000000, polarity=0, phase=0, sck=Pin(10), mosi=Pin(11), miso=None)
-tft=TFT(spi,9,12,13)
+spi = SPI(1, baudrate=20000000, polarity=0, phase=0, miso=None)
+tft=TFT(spi,12,13,14)
 tft.initr()
 tft.rgb(True)
 
-sensor = HCSR04(trigger_pin=0, echo_pin=1, echo_timeout_us=10000)
+sensor = HCSR04(trigger_pin=26, echo_pin=15, echo_timeout_us=10000)
 tft.rotation(3)
 
 # Pin Layout:

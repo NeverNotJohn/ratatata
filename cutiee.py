@@ -79,9 +79,16 @@ def beep():
     speaker.value(0)
     time.sleep(0.1)
 
+open = True
         
 def analyzing(pin):
-    if (sensor.distance_cm() < 10):
+    
+    global open
+    
+    print('boop')
+    
+    if (sensor.distance_cm() < 10 and open):
+        open = False
         tft.fill(TFT.BLACK)
         tft.text((15,54), "Analyzing.", TFT.WHITE, sysfont, 2)
         beep()
@@ -101,6 +108,7 @@ def analyzing(pin):
         speaker.value(0)
         time.sleep(2)
         tft.fill(TFT.BLACK)
+        open = True
   
 # Interrupt handling
 

@@ -4,6 +4,8 @@ from ST7735 import TFT
 from sysfont import sysfont
 from machine import SPI,Pin
 from time import sleep
+from ST7735 import TFT,TFTColor
+from machine import SPI,Pin
 
 
 start = Pin(0, Pin.IN, Pin.PULL_DOWN)                    # Start button
@@ -88,6 +90,42 @@ def bonk(pin):
         
     print("Polaroid out!")
     
+# Display bmp
+def display(filePath):
+
+    f=open(filePath, 'rb')
+    if f.read(2) == b'BM':  #header
+        dummy = f.read(8) #file size(4), creator bytes(4)
+        offset = int.from_bytes(f.read(4), 'little')
+        hdrsize = int.from_bytes(f.read(4), 'little')
+        width = int.from_bytes(f.read(4), 'little')
+        height = int.from_bytes(f.read(4), 'little')
+        if int.from_bytes(f.read(2), 'little') == 1: #planes must be 1
+            depth = int.from_bytes(f.read(2), 'little')
+            if depth == 24 and int.from_bytes(f.read(4), 'little') == 0:#compress method == uncompressed
+                print("Image size:", width, "x", height)
+                rowsize = (width * 3 + 3) & ~3
+                if height < 0:
+                    height = -height
+                    flip = False
+                else:
+                    flip = True
+                w, h = width, height
+                if w > 128: w = 128
+                if h > 160: h = 160
+                tft._setwindowloc((0,0),(w - 1,h - 1))
+                for row in range(h):
+                    if flip:
+                        pos = offset + (height - 1 - row) * rowsize
+                    else:
+                        pos = offset + row * rowsize
+                    if f.tell() != pos:
+                        dummy = f.seek(pos)
+                    for col in range(w):
+                        bgr = f.read(3)
+                        tft._pushcolor(TFTColor(bgr[2],bgr[1],bgr[0]))
+    spi.deinit()
+
     
     
 
@@ -102,16 +140,20 @@ print("Begin!")
 # main
 
 tft.fill(TFT.BLACK)
+wait = 10
 
 while True:
     # Do idle 3 animation
     print("Idle!")
-    tft.text((30,45), "Ur Old!", TFT.WHITE, sysfont, 2)
-    tft.text((20,65), "8/31/2024", TFT.WHITE, sysfont, 2)
-    tft.text((70,85), "<3", TFT.WHITE, sysfont, 2)
-    sleep(5)
     tft.fill(TFT.BLACK)
-    sleep(5)
+    tft.text((45,40), "Ur Old!", TFT.WHITE, sysfont, 2)
+    tft.text((30,60), "8/31/2024", TFT.WHITE, sysfont, 2)
+    tft.text((65,80), "<3", TFT.WHITE, sysfont, 2)
+    sleep(wait)
+    display("party.bmp")
+    sleep(wait)
+    display("miku.bmp")
+    sleep(wait)
     
     # Other Animations
     # Defintely draw a cock

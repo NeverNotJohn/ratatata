@@ -30,15 +30,17 @@ speaker -> 3
 
 """
 
+# TFT init
 spi = SPI(1, baudrate=20000000, polarity=0, phase=0, miso=None)
 tft=TFT(spi,12,13,14)
 tft.initr()
 tft.rgb(True)
+tft.rotation(3)
 
 
 # Interrupts
 
-def bonk():
+def bonk(pin):
     
     #if (sensor.value() == 0):
     #    return
@@ -48,25 +50,37 @@ def bonk():
         return 
         
     print("reading...")
+    tft.fill(TFT.BLACK)
     # Loading...
-    sleep(5)
+    
+    for i in range(3):
+        tft.text((5,54), "reading.", TFT.WHITE, sysfont, 2)
+        sleep(0.5)
+        tft.text((5,54), "reading..", TFT.WHITE, sysfont, 2)
+        sleep(0.5)
+        tft.text((5,54), "reading...", TFT.WHITE, sysfont, 2)
+        sleep(0.5)
+        tft.fill(TFT.BLACK) # can probs make more efficient clearing only periods
+    
     
     if (s0.value() == 0 and s1.value() == 0 and s2.value() == 1):
-        print("person 1 played")
+        tft.text((5,54), "person 1!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 0):
-        print("person 2 played")
+        tft.text((5,54), "person 2!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 1):
-        print("person 3 played")
+        tft.text((5,54), "person 3!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 0 and s2.value() == 0):
-        print("person 4 played")
+        tft.text((5,54), "person 4!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 0 and s2.value() == 1):
-        print("person 5 played")
+        tft.text((5,54), "person 5!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 1 and s2.value() == 0):
-        print("person 6 played")
+        tft.text((5,54), "person 6!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 1 and s2.value() == 1):
-        print("person 7 played")
+        tft.text((5,54), "person 7!", TFT.WHITE, sysfont, 2)
     else:
-        print("try again bitch")
+        tft.text((5,54), "who tf?! Invalid Input Bitch Try Again", TFT.WHITE, sysfont, 2)
+        sleep(3)
+        tft.fill(TFT.BLACK)
         
     # Wait until the sensor is clear
     while (s0.value() != 0 or s1.value() != 0 or s2.value() != 0):
@@ -78,19 +92,31 @@ def bonk():
     
 
 # Interrupt handling
-#s0.irq(trigger=Pin.IRQ_RISING, handler=bonk)          # Sensor 0 interrupt
-#s1.irq(trigger=Pin.IRQ_RISING, handler=bonk)          # Sensor 1 interrupt
-#s2.irq(trigger=Pin.IRQ_RISING, handler=bonk)          # Sensor 2 interrupt
+s0.irq(trigger=Pin.IRQ_RISING, handler=bonk)          # Sensor 0 interrupt
+s1.irq(trigger=Pin.IRQ_RISING, handler=bonk)          # Sensor 1 interrupt
+s2.irq(trigger=Pin.IRQ_RISING, handler=bonk)          # Sensor 2 interrupt
 
 
 print("Begin!")
 
 # main
+
+tft.fill(TFT.BLACK)
+
 while True:
-    # Do idle animation
-    sleep(0.5)
-    bonk()
+    # Do idle 3 animation
     print("Idle!")
+    tft.text((30,45), "Ur Old!", TFT.WHITE, sysfont, 2)
+    tft.text((20,65), "8/31/2024", TFT.WHITE, sysfont, 2)
+    tft.text((70,85), "<3", TFT.WHITE, sysfont, 2)
+    sleep(5)
+    tft.fill(TFT.BLACK)
+    sleep(5)
+    
+    # Other Animations
+    # Defintely draw a cock
+    # Funny Grace photos
+    
     #led.value(0)
     #if sensor.value() == 1:
         #led.value(1)

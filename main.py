@@ -39,8 +39,14 @@ tft.initr()
 tft.rgb(True)
 tft.rotation(3)
 
-
-# Interrupts
+# Slideshow BMP files
+def slideshow(file_array):
+    # File array is a list of file names as a string
+    for file in file_array:
+        if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+        display(file)
+        sleep(3)
 
 def bonk(pin):
     
@@ -66,7 +72,17 @@ def bonk(pin):
     
     
     if (s0.value() == 0 and s1.value() == 0 and s2.value() == 1):
-        tft.text((5,54), "person 1!", TFT.WHITE, sysfont, 2)
+        tft.text((5,54), "Poochie! >:D", TFT.WHITE, sysfont, 3)
+        
+        # Loop until sensor is out
+        while (True):
+            if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+            tft.fill(TFT.BLACK)
+            tft.text((5,54), "Lorem Ipsum Message", TFT.WHITE, sysfont, 3)
+            sleep(5)
+            slideshow(["poochie.bmp", "poochie2.bmp"])
+            
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 0):
         tft.text((5,54), "person 2!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 1):
@@ -84,9 +100,6 @@ def bonk(pin):
         sleep(3)
         tft.fill(TFT.BLACK)
         
-    # Wait until the sensor is clear
-    while (s0.value() != 0 or s1.value() != 0 or s2.value() != 0):
-        pass
         
     print("Polaroid out!")
     
@@ -107,12 +120,10 @@ def display(filePath):
                 rowsize = (width * 3 + 3) & ~3
                 if height < 0:
                     height = -height
-                    flip = False
+                    flip = True
                 else:
                     flip = True
                 w, h = width, height
-                if w > 128: w = 128
-                if h > 160: h = 160
                 tft._setwindowloc((0,0),(w - 1,h - 1))
                 for row in range(h):
                     if flip:
@@ -126,7 +137,12 @@ def display(filePath):
                         tft._pushcolor(TFTColor(bgr[2],bgr[1],bgr[0]))
     spi.deinit()
 
-    
+# Check pins and return true/false
+def checkPins(pin_array):
+    if (s0.value() != pin_array[0] or s1.value() != pin_array[1] or s2.value() != pin_array[2]):
+        return True
+    else:
+        return False
     
 
 # Interrupt handling
@@ -140,7 +156,7 @@ print("Begin!")
 # main
 
 tft.fill(TFT.BLACK)
-wait = 10
+wait = 5
 
 while True:
     # Do idle 3 animation
@@ -153,6 +169,10 @@ while True:
     display("party.bmp")
     sleep(wait)
     display("miku.bmp")
+    sleep(wait)
+    display("cat.bmp")
+    sleep(wait)
+    display("sharkie.bmp")
     sleep(wait)
     
     # Other Animations

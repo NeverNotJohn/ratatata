@@ -63,46 +63,98 @@ def bonk(pin):
     
     for i in range(3):
         tft.text((5,54), "reading.", TFT.WHITE, sysfont, 2)
-        sleep(0.5)
+        sleep(0.3)
         tft.text((5,54), "reading..", TFT.WHITE, sysfont, 2)
-        sleep(0.5)
+        sleep(0.3)
         tft.text((5,54), "reading...", TFT.WHITE, sysfont, 2)
-        sleep(0.5)
+        sleep(0.3)
         tft.fill(TFT.BLACK) # can probs make more efficient clearing only periods
     
     
     if (s0.value() == 0 and s1.value() == 0 and s2.value() == 1):
         tft.text((5,54), "Poochie! >:D", TFT.WHITE, sysfont, 3)
+        sleep(2)
         # Loop until sensor is out
         while (True):
             if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
                 break
             tft.fill(TFT.BLACK)
-            tft.text((5,54), "Lorem Ipsum Message", TFT.WHITE, sysfont, 3)
+            tft.text((5,5), "old", TFT.WHITE, sysfont, 2)
             sleep(5)
-            slideshow(["poochie.bmp", "poochie2.bmp"])
+            slideshow(["poochie1.bmp", "poochie2.bmp", "poochie3.bmp", "poochie4.bmp", "poochie45.bmp", "poochie5.bmp", "poochie6.bmp", "poochie7.bmp", "poochie8.bmp", "poochie9.bmp", "poochie10.bmp", "poochie11.bmp", "poochie12.bmp", "poochie13.bmp", "poochie14.bmp", "poochie15.bmp", "poochie16.bmp"])
             
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 0):
         tft.text((5,54), "Father Chow :O", TFT.WHITE, sysfont, 2)
+        sleep(2)
         # Loop until sensor is out
         while (True):
             if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
                 break
             tft.fill(TFT.BLACK)
-            tft.text((5,54), "Lorem Ipsum Message", TFT.WHITE, sysfont, 3)
+            tft.text((5,5), "Lorem Ipsum Message", TFT.WHITE, sysfont, 2)
             sleep(5)
             slideshow(["poochie.bmp", "poochie2.bmp"])
         
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 1):
         tft.text((5,54), "Melissa >:T", TFT.WHITE, sysfont, 2)
+        sleep(2)
+        # Loop until sensor is out
+        while (True):
+            if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+            tft.fill(TFT.BLACK)
+            tft.text((5,5), "Lorem Ipsum Message", TFT.WHITE, sysfont, 2)
+            sleep(5)
+            slideshow(["poochie.bmp", "poochie2.bmp"])
+            
     elif (s0.value() == 1 and s1.value() == 0 and s2.value() == 0):
         tft.text((5,54), "Mana Cat!!!", TFT.WHITE, sysfont, 2)
+        sleep(2)
+        # Loop until sensor is out
+        while (True):
+            if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+            tft.fill(TFT.BLACK)
+            tft.text((5,5), "Lorem Ipsum Message", TFT.WHITE, sysfont, 2)
+            sleep(5)
+            slideshow(["poochie.bmp", "poochie2.bmp"])
+            
     elif (s0.value() == 1 and s1.value() == 0 and s2.value() == 1):
         tft.text((5,54), "Ur Roomate HEHE", TFT.WHITE, sysfont, 2)
+        sleep(2)
+        # Loop until sensor is out
+        while (True):
+            if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+            tft.fill(TFT.BLACK)
+            tft.text((5,5), "Lorem Ipsum Message", TFT.WHITE, sysfont, 2)
+            sleep(5)
+            slideshow(["poochie.bmp", "poochie2.bmp"])
+            
     elif (s0.value() == 1 and s1.value() == 1 and s2.value() == 0):
         tft.text((5,54), "Mother", TFT.WHITE, sysfont, 2)
+        sleep(2)
+        # Loop until sensor is out
+        while (True):
+            if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+            tft.fill(TFT.BLACK)
+            tft.text((5,5), "Lorem Ipsum Message", TFT.WHITE, sysfont, 2)
+            sleep(5)
+            slideshow(["poochie.bmp", "poochie2.bmp"])
+            
     elif (s0.value() == 1 and s1.value() == 1 and s2.value() == 1):
         tft.text((5,54), "Bakudekusan", TFT.WHITE, sysfont, 2)
+        sleep(2)
+        # Loop until sensor is out
+        while (True):
+            if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+            tft.fill(TFT.BLACK)
+            tft.text((5,5), "Lorem Ipsum Message", TFT.WHITE, sysfont, 2)
+            sleep(5)
+            slideshow(["poochie.bmp", "poochie2.bmp"])
+            
     else:
         tft.text((5,54), "who tf?! Invalid Input Bitch Try Again", TFT.WHITE, sysfont, 2)
         sleep(3)

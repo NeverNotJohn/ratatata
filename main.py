@@ -73,7 +73,6 @@ def bonk(pin):
     
     if (s0.value() == 0 and s1.value() == 0 and s2.value() == 1):
         tft.text((5,54), "Poochie! >:D", TFT.WHITE, sysfont, 3)
-        
         # Loop until sensor is out
         while (True):
             if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
@@ -84,17 +83,26 @@ def bonk(pin):
             slideshow(["poochie.bmp", "poochie2.bmp"])
             
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 0):
-        tft.text((5,54), "person 2!", TFT.WHITE, sysfont, 2)
+        tft.text((5,54), "Father Chow :O", TFT.WHITE, sysfont, 2)
+        # Loop until sensor is out
+        while (True):
+            if (s0.value() == 0 and s1.value() == 0 and s2.value() == 0):
+                break
+            tft.fill(TFT.BLACK)
+            tft.text((5,54), "Lorem Ipsum Message", TFT.WHITE, sysfont, 3)
+            sleep(5)
+            slideshow(["poochie.bmp", "poochie2.bmp"])
+        
     elif (s0.value() == 0 and s1.value() == 1 and s2.value() == 1):
-        tft.text((5,54), "person 3!", TFT.WHITE, sysfont, 2)
+        tft.text((5,54), "Melissa >:T", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 0 and s2.value() == 0):
-        tft.text((5,54), "person 4!", TFT.WHITE, sysfont, 2)
+        tft.text((5,54), "Mana Cat!!!", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 0 and s2.value() == 1):
-        tft.text((5,54), "person 5!", TFT.WHITE, sysfont, 2)
+        tft.text((5,54), "Ur Roomate HEHE", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 1 and s2.value() == 0):
-        tft.text((5,54), "person 6!", TFT.WHITE, sysfont, 2)
+        tft.text((5,54), "Mother", TFT.WHITE, sysfont, 2)
     elif (s0.value() == 1 and s1.value() == 1 and s2.value() == 1):
-        tft.text((5,54), "person 7!", TFT.WHITE, sysfont, 2)
+        tft.text((5,54), "Bakudekusan", TFT.WHITE, sysfont, 2)
     else:
         tft.text((5,54), "who tf?! Invalid Input Bitch Try Again", TFT.WHITE, sysfont, 2)
         sleep(3)
@@ -156,23 +164,25 @@ print("Begin!")
 # main
 
 tft.fill(TFT.BLACK)
-wait = 5
+wait = 3
 
 while True:
     # Do idle 3 animation
     print("Idle!")
     tft.fill(TFT.BLACK)
-    tft.text((45,40), "Ur Old!", TFT.WHITE, sysfont, 2)
-    tft.text((30,60), "8/31/2024", TFT.WHITE, sysfont, 2)
-    tft.text((65,80), "<3", TFT.WHITE, sysfont, 2)
+    tft.text((50,40), "Ur Old!", TFT.WHITE, sysfont, 2)
+    tft.text((35,60), "8/31/2024", TFT.WHITE, sysfont, 2)
+    tft.text((70,80), "<3", TFT.WHITE, sysfont, 2)
     sleep(wait)
-    display("party.bmp")
+    display("party.bmp") # uploaded
     sleep(wait)
-    display("miku.bmp")
+    display("miku.bmp") # uploaded
     sleep(wait)
-    display("cat.bmp")
+    display("cat.bmp")  # uploaded
     sleep(wait)
     display("sharkie.bmp")
+    sleep(wait)
+    display("homura.bmp")
     sleep(wait)
     
     # Other Animations
